@@ -1,7 +1,7 @@
 %  This script sets up and runs a simulation of the autonomous vehicle
 %  controller
 
-%  Last Updated:   1/29/2024
+%  Last Updated:   1/07/2026
 
 clear, clc
 
