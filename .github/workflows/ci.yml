@@ -39,7 +39,19 @@ jobs:
       #   uses: matlab-actions/run-build@v2
 
       # You can use "run-command" to execute custom MATLAB scripts, functions, or statements
-      - name: Run custom testing procedure
+      - name: Run VC
         uses: matlab-actions/run-command@v2
         with:
-          command: disp('Running VC Bench!'); addpath('code/VC v1.2'); results = runtests('IncludeSubfolders', true); assertSuccess(results);
+          command: |
+            vcdir = fullfile(pwd, 'code', 'VC v1.2');
+            addpath(genpath(vcdir));
+            cd(vcdir);
+
+            try
+                run('run_VC_bench.m');
+            catch ME
+                disp(getReport(ME, 'extended'));
+                exit(1);
+            end
+
+            exit(0);
