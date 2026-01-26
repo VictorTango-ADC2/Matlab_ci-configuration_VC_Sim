@@ -114,5 +114,3 @@ Violations are flagged and visualized in post-processing.
 * **Inference Plots**
   Visualizations highlighting robustness metrics and threshold violations.
 
-
-But as-is, this will not get you laughed out of GitHub.
