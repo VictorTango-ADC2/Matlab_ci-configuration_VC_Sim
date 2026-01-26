@@ -1,39 +1,118 @@
-Autonomous Vehicle Controller Simulation
-Overview
-This project simulates an autonomous vehicle controller using MATLAB and Simulink. It leverages a Clothoid Toolbox to manage smooth path generation and evaluates vehicle performance across various real-world and synthetic tracks (e.g., VIR, Pikes Peak, and figure-8 maneuvers).
-Project Structure
-main.m: The primary execution script.
-VC_v1p2.slx: The core Simulink model for the vehicle controller.
-../clothoid_toolbox: A dependency containing path-generation utilities and waypoint data.
-init_par.m: Initializes vehicle dynamics and controller parameters.
-repack_simdata.m: Post-processes raw Simulink output into organized MATLAB structures.
-Getting Started
-Prerequisites
-MATLAB (R2021b or later recommended).
-Simulink.
-The clothoid_toolbox directory must be located in the parent folder.
-Running the Simulation
-Open MATLAB and navigate to the project directory.
-In the TESTS array, specify the ID of the track you wish to simulate (e.g., TESTS = [13] for VTTI).
-Set saveplots = true if you wish to archive the results in the /results folder.
-Run the script.
-Configuration
-Reference Velocity & Constraints
-The simulation calculates a velocity profile based on the following parameters:
-vmax: Maximum allowable speed 
-max_alat: Maximum lateral acceleration 
-max_along: Maximum longitudinal acceleration
-Waypoint Datasets
 
-Performance Validation
-After the simulation completes, the results are validated against specific thresholds to ensure safety and passenger comfort:
-Cross-Track Error
-Velocity Error
-Comfort Limit (Jerk)
-Stability Limit (Lat Accel
-Security (Jamming Alert)
-Output
-simdata.mat: Contains all logged signals (position, heading, velocity, etc.).
-Results Folder: If enabled, plots and data are saved to ./results/testcaseX/.
-Inference Plots: Visual representations of robustness and threshold violations.
- 
+# Autonomous Vehicle Controller Simulation
+
+## Overview
+
+This project simulates an **autonomous vehicle controller** using **MATLAB** and **Simulink**. It leverages a **Clothoid Toolbox** for smooth path generation and evaluates vehicle performance across a range of real-world and synthetic tracks, including:
+
+* VIR
+* Pikes Peak
+* Figure-8 maneuvers
+
+The goal is to assess tracking accuracy, comfort, and stability under realistic driving constraints.
+
+---
+
+## Project Structure
+
+```text
+├── main.m                 # Primary execution script
+├── VC_v1p2.slx            # Core Simulink vehicle controller model
+├── init_par.m             # Vehicle dynamics and controller initialization
+├── repack_simdata.m       # Post-processing of Simulink output
+├── ../clothoid_toolbox    # Path generation utilities and waypoint datasets
+└── results/               # (Optional) Saved plots and simulation outputs
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+* MATLAB (R2021b or later recommended)
+* Simulink
+* `clothoid_toolbox` directory located in the **parent folder** of this project
+
+---
+
+## Running the Simulation
+
+1. Open MATLAB and navigate to the project directory.
+2. In `main.m`, specify the desired track by setting the `TESTS` array:
+
+   ```matlab
+   TESTS = [13];  % Example: VTTI track
+   ```
+3. Enable plot saving if desired:
+
+   ```matlab
+   saveplots = true;
+   ```
+4. Run the script:
+
+   ```matlab
+   main
+   ```
+
+Simulation results will be displayed and optionally saved to the `results/` directory.
+
+---
+
+## Configuration
+
+### Reference Velocity & Constraints
+
+The simulation computes a reference velocity profile subject to the following constraints:
+
+* `vmax` – Maximum allowable speed
+* `max_alat` – Maximum lateral acceleration
+* `max_along` – Maximum longitudinal acceleration
+
+These limits ensure realistic vehicle behavior and passenger comfort.
+
+---
+
+### Waypoint Datasets
+
+Tracks are defined using waypoint datasets provided by the **Clothoid Toolbox**, enabling smooth curvature transitions and continuous heading profiles.
+
+---
+
+## Performance Validation
+
+After each simulation run, performance is evaluated against predefined safety and comfort thresholds:
+
+* **Cross-Track Error**
+* **Velocity Error**
+* **Comfort Limit (Jerk)**
+* **Stability Limit (Lateral Acceleration)**
+* **Security (Jamming Alert)**
+
+Violations are flagged and visualized in post-processing.
+
+---
+
+## Output
+
+* **`simdata.mat`**
+  Contains all logged simulation signals, including:
+
+  * Position
+  * Heading
+  * Velocity
+  * Acceleration
+  * Control inputs
+
+* **Results Folder**
+  If `saveplots = true`, results are saved to:
+
+  ```text
+  ./results/testcaseX/
+  ```
+
+* **Inference Plots**
+  Visualizations highlighting robustness metrics and threshold violations.
+
+
+But as-is, this will not get you laughed out of GitHub.
