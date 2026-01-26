@@ -110,6 +110,14 @@ Violations are flagged and visualized in post-processing.
   ```text
   ./results/testcaseX/
   ```
+  <p align="center">
+  <img src="code/image.png" width="700">
+</p>
+
+  <p align="center">
+  <img src="code/image2.png" width="700">
+</p>
+
 
 * **Inference Plots**
   Visualizations highlighting robustness metrics and threshold violations.
