@@ -25,7 +25,7 @@ end
 
 
 %  --initialize the simulation parameters
-init_par
+run('init_par.m');
 
 
 %  --load the waypoint data
@@ -100,17 +100,17 @@ for testcase = TESTS
 
     %  --run the closed-loop simulation
     tstart = tic;
-    %in = sim('VC_v1p2.slx',TFINAL)
+    sim('VC_v1p2.slx',TFINAL)
 
-    paramName = 'InitialCondition';
-    set_param('VC_v1p2/Block', paramName, vcg0);
+    %paramName = 'InitialCondition';
+    %set_param('VC_v1p2/Block', paramName, vcg0);
 
-    in = Simulink.SimulationInput('VC_v1p2');
-    in = in.setVariable('vcg0', vcg0);
-    in = in.setVariable('NUM_WP', NUM_WP);
-    in = in.setVariable('EWP', EWP);
+    %in = Simulink.SimulationInput('VC_v1p2');
+    %in = in.setVariable('vcg0', vcg0);
+    %in = in.setVariable('NUM_WP', NUM_WP);
+    %in = in.setVariable('EWP', EWP);
 
-    sim(in,TFINAL);
+    %sim(in,TFINAL);
 
     toc(tstart)
 
