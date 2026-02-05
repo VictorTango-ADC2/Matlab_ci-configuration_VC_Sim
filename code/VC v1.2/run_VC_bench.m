@@ -141,7 +141,7 @@ for testcase = TESTS
 
     if saveplots
         %  --create the folder for test results
-        folder = sprintf('./results/testcase%g/',testcase);
+        folder = sprintf('./Results/testcase%g/',testcase);
         if (exist(folder,'dir') == 0)
             %  --subfolder does not exist so create it
             mkdir(folder);
