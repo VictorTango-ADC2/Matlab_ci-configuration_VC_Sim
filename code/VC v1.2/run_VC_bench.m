@@ -1,9 +1,11 @@
+function run_VC_bench(k)
 %  This script sets up and runs a simulation of the autonomous vehicle
 %  controller
 
 %  Last Updated:   1/29/2024
 
-clear, clc
+
+
 
 %  --setup the temporary path assignments
 addpath ../clothoid_toolbox -begin
@@ -23,7 +25,7 @@ end
 
 
 %  --initialize the simulation parameters
-init_par
+run('init_par.m');
 
 
 %  --load the waypoint data
@@ -42,7 +44,7 @@ init_par
 %     PikesPeak.mat                 % 12
 %     VTTI_VIC.mat                  % 13
 
-TESTS = [1];
+TESTS = [k];
 
 
 %  --loop through each testcase
@@ -97,8 +99,30 @@ for testcase = TESTS
     % return
 
     %  --run the closed-loop simulation
+
+    assignin('base','vcg0',vcg0);
+    assignin('base','NUM_WP',NUM_WP);
+    assignin('base','EWP',EWP);
+    assignin('base', 'east0', EWP(1));
+    assignin('base', 'WPT_MTX', WPT_MTX);
+    assignin('base', 'ZWP', ZWP);
+    assignin('base', 'north0', NWP(1));
+    assignin('base', 'psi0', (pi/180)*HWP(1));
+    assignin('base', 'NWP', NWP);
+    
     tstart = tic;
     sim('VC_v1p2.slx',TFINAL)
+
+    %paramName = 'InitialCondition';
+    %set_param('VC_v1p2/Block', paramName, vcg0);
+
+    %in = Simulink.SimulationInput('VC_v1p2');
+    %in = in.setVariable('vcg0', vcg0);
+    %in = in.setVariable('NUM_WP', NUM_WP);
+    %in = in.setVariable('EWP', EWP);
+
+    %sim(in,TFINAL);
+
     toc(tstart)
 
     clear tstart K
@@ -127,3 +151,4 @@ end
 
 %%  --remove the temporary path assignments
 %rmpath ../clothoid_toolbox
+end
