@@ -102,6 +102,9 @@ for testcase = TESTS
     tstart = tic;
     %in = sim('VC_v1p2.slx',TFINAL)
 
+    paramName = 'InitialCondition';
+    set_param('VC_v1p2/Block', paramName, vcg0);
+
     in = Simulink.SimulationInput('VC_v1p2');
     in = in.setVariable('vcg0', vcg0);
     in = in.setVariable('NUM_WP', NUM_WP);
