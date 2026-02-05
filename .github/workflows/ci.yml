@@ -50,6 +50,12 @@ jobs:
                 exit(1);
             end
 
+      - name: Debug Results
+        run: |
+               pwd
+               ls -lah
+               ls -lah Results || true
+    
       - name: Upload simulation results
         uses: actions/upload-artifact@v4
         with:
