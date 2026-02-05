@@ -2,8 +2,9 @@
 %  controller
 
 %  Last Updated:   1/29/2024
-function run_VC_bench(k)
 clear, clc
+function run_VC_bench(k)
+
 
 %  --setup the temporary path assignments
 addpath ../clothoid_toolbox -begin
