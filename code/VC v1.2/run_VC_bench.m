@@ -102,7 +102,7 @@ for testcase = TESTS
     tstart = tic;
     %in = sim('VC_v1p2.slx',TFINAL)
 
-    in = Simulink.SimulationInput('VC_v1p2.slx');
+    in = Simulink.SimulationInput('VC_v1p2');
     in = in.setVariable('vcg0', vcg0);
     in = in.setVariable('NUM_WP', NUM_WP);
     in = in.setVariable('EWP', EWP);
