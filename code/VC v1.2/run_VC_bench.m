@@ -16,6 +16,11 @@ savemovie = false;
 
 saveplots = true;
 
+workspace = getenv("GITHUB_WORKSPACE");
+if isempty(workspace)
+    workspace = pwd; % local fallback
+end
+
 run_id = sprintf('testcase_%02d', k);
 results_root = fullfile(pwd, 'Results', run_id);
 
@@ -141,11 +146,11 @@ for testcase = TESTS
 
     if saveplots
         %  --create the folder for test results
-        folder = sprintf('./Results/testcase%g/',testcase);
-        if (exist(folder,'dir') == 0)
+        %folder = sprintf('./Results/testcase%g/',testcase);
+        %if (exist(results_root,'dir') == 0)
             %  --subfolder does not exist so create it
-            mkdir(folder);
-        end
+           % mkdir(folder);
+        %end
 
         %  --save simulation results to the specific testcase folder
         save(strcat(folder,'simdata.mat'))
