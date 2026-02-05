@@ -35,6 +35,9 @@ jobs:
       #   uses: matlab-actions/run-build@v1
 
       # You can use "run-command" to execute custom MATLAB scripts, functions, or statements
+      - name: Make Results folder
+        run: mkdir -p Results
+  
       - name: Run VC
         uses: matlab-actions/run-command@v1
         with:
