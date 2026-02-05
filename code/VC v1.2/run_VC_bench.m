@@ -2,7 +2,7 @@
 %  controller
 
 %  Last Updated:   1/29/2024
-
+function run_VC_bench(k)
 clear, clc
 
 %  --setup the temporary path assignments
@@ -42,7 +42,7 @@ init_par
 %     PikesPeak.mat                 % 12
 %     VTTI_VIC.mat                  % 13
 
-TESTS = [1];
+TESTS = [k];
 
 
 %  --loop through each testcase
@@ -127,3 +127,4 @@ end
 
 %%  --remove the temporary path assignments
 %rmpath ../clothoid_toolbox
+end
