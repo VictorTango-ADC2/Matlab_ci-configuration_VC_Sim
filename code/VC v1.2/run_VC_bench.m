@@ -99,6 +99,11 @@ for testcase = TESTS
     % return
 
     %  --run the closed-loop simulation
+
+    assignin('base','vcg0',vcg0);
+    assignin('base','NUM_WP',NUM_WP);
+    assignin('base','EWP',EWP);
+    
     tstart = tic;
     sim('VC_v1p2.slx',TFINAL)
 
