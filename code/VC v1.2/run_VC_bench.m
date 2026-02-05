@@ -103,6 +103,9 @@ for testcase = TESTS
     assignin('base','vcg0',vcg0);
     assignin('base','NUM_WP',NUM_WP);
     assignin('base','EWP',EWP);
+    assignin('base', 'east0', EWP(1));
+    assignin('base', 'WPT_MTX', WPT_MTX);
+    assignin('base', 'ZWP', ZWP);
     
     tstart = tic;
     sim('VC_v1p2.slx',TFINAL)
