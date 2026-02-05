@@ -153,7 +153,7 @@ for testcase = TESTS
         %end
 
         %  --save simulation results to the specific testcase folder
-        save(strcat(folder,'simdata.mat'))
+        save(fullfile(results_root,'simdata.mat'))
     else
         %  --just save a local copy of the simulation results
         save simdata.mat
