@@ -166,4 +166,12 @@ end
 
 %%  --remove the temporary path assignments
 %rmpath ../clothoid_toolbox
+
+if ~exist(fullfile(results_root,'simdata.mat'),'file')
+    simdata = [];
+    if ~exist(results_root,'dir')
+        mkdir(results_root);
+    end
+    save(fullfile(results_root,'simdata.mat'),'simdata')
+end
 end
