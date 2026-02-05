@@ -1,9 +1,10 @@
+function run_VC_bench(k)
 %  This script sets up and runs a simulation of the autonomous vehicle
 %  controller
 
 %  Last Updated:   1/29/2024
-clear, clc
-function run_VC_bench(k)
+
+
 
 
 %  --setup the temporary path assignments
