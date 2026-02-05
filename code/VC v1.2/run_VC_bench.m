@@ -12,16 +12,26 @@ addpath ../clothoid_toolbox -begin
 
 wptfolder = '../clothoid_toolbox/waypoint_data/';
 
-saveplots = false;
 savemovie = false;
 
+saveplots = true;
+
+run_id = sprintf('testcase_%02d', k);
+results_root = fullfile(pwd, 'Results', run_id);
+
 if saveplots
-    %  --check to see if the results folder exists
-    if (exist('results','dir') == 0)
-        %  --results folder does not exists so create it
-        mkdir results
+    if exist(results_root, 'dir') == 0
+        mkdir(results_root);
     end
 end
+
+%if saveplots
+    %  --check to see if the results folder exists
+   % if (exist('results','dir') == 0)
+        %  --results folder does not exists so create it
+       % mkdir results
+   % end
+%end
 
 
 %  --initialize the simulation parameters
