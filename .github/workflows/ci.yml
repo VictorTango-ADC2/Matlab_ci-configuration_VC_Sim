@@ -44,7 +44,7 @@ jobs:
             cd(vcdir);
 
             try
-                run_VC_bench(${ { matrix.case } });
+                run_VC_bench(${{ matrix.case }});
             catch ME
                 disp(getReport(ME, 'extended'));
                 exit(1);
