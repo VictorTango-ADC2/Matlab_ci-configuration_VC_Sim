@@ -28,7 +28,7 @@ jobs:
       
       # Sets up MATLAB on a GitHub-hosted runner
       - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v2
 
       # You can use "run-build" to invoke the MATLAB build tool and run build tasks
       #- name: Run the default "test" task in the build file
