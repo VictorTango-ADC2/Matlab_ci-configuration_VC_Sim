@@ -436,5 +436,14 @@ for p = 1:length(plottype)
 
 
     end
+
+    figs = findall(0,'Type','figure');
+
+    for i = 1:length(figs)
+        fname = fullfile(results_root, sprintf('plot_%02d.png', i));
+        exportgraphics(figs(i), fname, 'Resolution', 300);
+    end
+
+    close all
 end
 
