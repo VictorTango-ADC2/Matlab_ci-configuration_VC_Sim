@@ -100,7 +100,15 @@ for testcase = TESTS
 
     %  --run the closed-loop simulation
     tstart = tic;
-    sim('VC_v1p2.slx',TFINAL)
+    %in = sim('VC_v1p2.slx',TFINAL)
+
+    in = Simulink.SimulationInput('VC_v1p2.slx');
+    in = in.setVariable('vcg0', vcg0);
+    in = in.setVariable('NUM_WP', NUM_WP);
+    in = in.setVariable('EWP', EWP);
+
+    sim(in,TFINAL);
+
     toc(tstart)
 
     clear tstart K
