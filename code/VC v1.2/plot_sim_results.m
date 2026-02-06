@@ -25,7 +25,7 @@ for p = 1:length(plottype)
     switch plottype(p)
         case 1  % plot the configuration signals
             fig = figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'mode_select','action_select','AV_start_request', ...
                 'AV_mode_active','VC_state','car_is_stopped', ...
                 'speed_mode','steer_mode','path_mode','wpt_status_change', ...
@@ -63,7 +63,7 @@ for p = 1:length(plottype)
 
         case 2  % plot the motion signals
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'vref','vdes','vcar', ...
                 'alat','along','pitch','jlat','jlong'};
             yl = {'m/s','m/s','m/s','m/s^2','m/s^2','rad','m/s^3','m/s^3'};
@@ -104,7 +104,7 @@ for p = 1:length(plottype)
 
         case 3  % plot the control signals
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'torque_cmd','torque_fbk','brake_cmd','brake_fbk', ...
                 'steer_cmd','steer_fbk'};
             yl = {'Nm','Nm','Nm','Nm','deg','deg'};
@@ -141,7 +141,7 @@ for p = 1:length(plottype)
 
         case 4  % plot the force signals
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'Fgrade','Fsum','Fnet','Fdamp'};
             yl = {'N','N','N','N'};
             NS = length(sigs);
@@ -164,7 +164,7 @@ for p = 1:length(plottype)
 
         case 5  % plot the pose signals
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'north_target','northcg','northr', ...
                 'east_target','eastcg','eastr', ...
                 'xterr','psi'};
@@ -217,7 +217,7 @@ for p = 1:length(plottype)
 
         case 6  % plot the birdseye signals
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'northr','eastr'};
             yl = {'m','m'};
             h(1) = plot(EWP,NWP,'.-','markersize',10,'linewidth',lw,'color',gray);
@@ -238,7 +238,7 @@ for p = 1:length(plottype)
         case 7  % torque, brake, velocity
 
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             sigs = {'torque_cmd','torque_fbk','brake_cmd','brake_fbk', ...
                 'vref','vdes','vcar'};
             NS = length(sigs);
@@ -281,7 +281,7 @@ for p = 1:length(plottype)
             lw = 1;
 
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
 
             %  --prepare for saving a movie
             if savemovie
@@ -402,7 +402,7 @@ for p = 1:length(plottype)
 
         case 9  % plot the waypoint index signal
             fig=figure(plottype(p))
-            clf(fig)
+            %clf(fig)
             subplotfill(2,1,1);
             h = stairs(sim.t,sim.wpt_index,'color','b');
             set(h,'linewidth',lw)
