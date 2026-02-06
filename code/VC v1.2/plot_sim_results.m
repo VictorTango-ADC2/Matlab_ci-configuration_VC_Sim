@@ -58,7 +58,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'timing.png'),plotsize);
+                savefig(strcat(folder,'timing.png'),plotsize);
             end
 
         case 2  % plot the motion signals
@@ -98,7 +98,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'motion.png'),plotsize);
+                savefig(fullfile(results_root,'motion.png'),plotsize);
             end
 
 
@@ -136,7 +136,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'control.png'),plotsize);
+                savefig(fullfile(results_root,'control.png'),plotsize);
             end
 
         case 4  % plot the force signals
@@ -158,7 +158,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'forces.png'),plotsize);
+                savefig(fullfile(results_root,'forces.png'),plotsize);
             end
 
 
@@ -211,7 +211,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'pose.png'),plotsize);
+                savefig(fullfile(results_root,'pose.png'),plotsize);
             end
 
 
@@ -232,7 +232,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'birdseye.png'),plotsize);
+                savefig(fullfile(results_root,'birdseye.png'),plotsize);
             end
 
         case 7  % torque, brake, velocity
@@ -269,7 +269,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(fullfile(results_root,'speed_control.png'),plotsize);
+                savefig(fullfile(results_root,'speed_control.png'),plotsize);
             end
 
 
@@ -431,7 +431,7 @@ for p = 1:length(plottype)
 
 
             if saveplots
-                printpng(fullfile(results_root,'wpt_index.png'),plotsize);
+                savefig(fullfile(results_root,'wpt_index.png'),plotsize);
             end
 
 
