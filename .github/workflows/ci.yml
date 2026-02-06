@@ -18,9 +18,12 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    
     strategy:
       matrix:
         case: [1,2,3,4,5,6,7,8,9,10,11,12,13]
+          release: R2023a
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
