@@ -10,7 +10,7 @@ function run_VC_bench(k)
 addpath clothoid_toolbox -begin
 addpath waypoint_data -begin
 
-savemovie = true;
+savemovie = false;
 saveplots = true;
 
 workspace = getenv("GITHUB_WORKSPACE");
