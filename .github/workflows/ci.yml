@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     
     strategy:
+    fail-fast: false
       matrix:
         case: [1,2,3,4,5,6,7,8,9,10,11,12,13]
          
@@ -66,6 +67,27 @@ jobs:
         with:
           name: VC_results_case_${{ matrix.case }}
           path: Results/case_${{ matrix.case }} #VC_results_case_${{ matrix.case }}/
+
+
+  merge-results:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download all case artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all_results
+
+      - name: Merge into single Results folder
+        run: |
+          mkdir -p Results
+          mv all_results/* Results/
+
+      - name: Upload combined results
+        uses: actions/upload-artifact@v4
+        with:
+          name: VC_results_all_cases
+          path: Results
   # Runs a set of commands using the runners shell
       #- name: Run all tests
         #uses: matlab-actions/run-tests@v2
