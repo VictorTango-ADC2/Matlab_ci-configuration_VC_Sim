@@ -98,7 +98,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'motion.png'),plotsize);
+                printpng(fullfile(results_root,'motion.png'),plotsize);
             end
 
 
@@ -136,7 +136,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'control.png'),plotsize);
+                printpng(fullfile(results_root,'control.png'),plotsize);
             end
 
         case 4  % plot the force signals
@@ -158,7 +158,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'forces.png'),plotsize);
+                printpng(fullfile(results_root,'forces.png'),plotsize);
             end
 
 
@@ -211,7 +211,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'pose.png'),plotsize);
+                printpng(fullfile(results_root,'pose.png'),plotsize);
             end
 
 
@@ -232,7 +232,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'birdseye.png'),plotsize);
+                printpng(fullfile(results_root,'birdseye.png'),plotsize);
             end
 
         case 7  % torque, brake, velocity
@@ -269,7 +269,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                printpng(strcat(folder,'speed_control.png'),plotsize);
+                printpng(fullfile(results_root,'speed_control.png'),plotsize);
             end
 
 
@@ -431,10 +431,19 @@ for p = 1:length(plottype)
 
 
             if saveplots
-                printpng(strcat(folder,'wpt_index.png'),plotsize);
+                printpng(fullfile(results_root,'wpt_index.png'),plotsize);
             end
 
 
     end
+
+    figs = findall(0,'Type','figure');
+
+    for i = 1:length(figs)
+        fname = fullfile(results_root, sprintf('plot_%02d.png', i));
+        exportgraphics(figs(i), fname, 'Resolution', 300);
+    end
+
+    close all
 end
 

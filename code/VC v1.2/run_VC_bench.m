@@ -12,16 +12,40 @@ addpath ../clothoid_toolbox -begin
 
 wptfolder = '../clothoid_toolbox/waypoint_data/';
 
-saveplots = false;
 savemovie = false;
 
-if saveplots
-    %  --check to see if the results folder exists
-    if (exist('results','dir') == 0)
-        %  --results folder does not exists so create it
-        mkdir results
-    end
+saveplots = true;
+
+workspace = getenv("GITHUB_WORKSPACE");
+if isempty(workspace)
+    workspace = pwd; % local fallback
 end
+
+repoRoot = fileparts(fileparts(pwd));
+run_id = sprintf('testcase_%02d', k);
+results_root = fullfile(repoRoot, 'Results',run_id);
+if ~exist(results_root, 'dir')
+    mkdir(results_root);
+end
+
+
+
+%
+%results_root = fullfile(pwd, 'Results', run_id);
+
+%if saveplots
+ %   if exist(results_root, 'dir') == 0
+  %      mkdir(results_root);
+   % end
+%end
+
+%if saveplots
+    %  --check to see if the results folder exists
+   % if (exist('results','dir') == 0)
+        %  --results folder does not exists so create it
+       % mkdir results
+   % end
+%end
 
 
 %  --initialize the simulation parameters
@@ -131,14 +155,14 @@ for testcase = TESTS
 
     if saveplots
         %  --create the folder for test results
-        folder = sprintf('./results/testcase%g/',testcase);
-        if (exist(folder,'dir') == 0)
+        %folder = sprintf('./Results/testcase%g/',testcase);
+        %if (exist(results_root,'dir') == 0)
             %  --subfolder does not exist so create it
-            mkdir(folder);
-        end
+           % mkdir(folder);
+        %end
 
         %  --save simulation results to the specific testcase folder
-        save(strcat(folder,'simdata.mat'))
+        save(fullfile(results_root,'simdata.mat'))
     else
         %  --just save a local copy of the simulation results
         save simdata.mat
@@ -151,4 +175,12 @@ end
 
 %%  --remove the temporary path assignments
 %rmpath ../clothoid_toolbox
+
+if ~exist(fullfile(results_root,'simdata.mat'),'file')
+    simdata = [];
+    if ~exist(results_root,'dir')
+        mkdir(results_root);
+    end
+    save(fullfile(results_root,'simdata.mat'),'simdata')
+end
 end
