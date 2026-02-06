@@ -2,18 +2,15 @@ function run_VC_bench(k)
 %  This script sets up and runs a simulation of the autonomous vehicle
 %  controller
 
-%  Last Updated:   1/29/2024
-
+%  Last Updated:   5/30 /2023
 
 
 
 %  --setup the temporary path assignments
-addpath ../clothoid_toolbox -begin
+addpath clothoid_toolbox -begin
+addpath waypoint_data -begin
 
-wptfolder = '../clothoid_toolbox/waypoint_data/';
-
-savemovie = true;
-
+savemovie = false;
 saveplots = true;
 
 workspace = getenv("GITHUB_WORKSPACE");
@@ -66,7 +63,6 @@ run('init_par.m');
 %     RoadAmerica.mat               % 10
 %     PikesPeak_clothoid.mat        % 11
 %     PikesPeak.mat                 % 12
-%     VTTI_VIC.mat                  % 13
 
 TESTS = [k];
 
@@ -87,12 +83,8 @@ for testcase = TESTS
     clear NWP EWP HWP VWP KWP ZWP SWP GWP WPT_MTX TFINAL sim
 
     [NWP,EWP,HWP,VWP,KWP,ZWP,SWP,GWP,coursename] = get_waypoint_data( ...
-        testcase, vstart, vmax, vfinal, max_alat, max_along, randrotate, ...
-        wptfolder);
+        testcase, vstart, vmax, vfinal, max_alat, max_along, randrotate);
 
-    NWP = NWP - NWP(1);
-    EWP = EWP - EWP(1);
-    
     NUM_WP = length(NWP);
     WPT_MTX = [NWP,EWP,HWP,VWP,KWP,SWP];
 
@@ -135,18 +127,7 @@ for testcase = TESTS
     assignin('base', 'NWP', NWP);
     
     tstart = tic;
-    sim('VC_v1p2.slx',TFINAL)
-
-    %paramName = 'InitialCondition';
-    %set_param('VC_v1p2/Block', paramName, vcg0);
-
-    %in = Simulink.SimulationInput('VC_v1p2');
-    %in = in.setVariable('vcg0', vcg0);
-    %in = in.setVariable('NUM_WP', NUM_WP);
-    %in = in.setVariable('EWP', EWP);
-
-    %sim(in,TFINAL);
-
+    sim('VC_v1p1.slx',TFINAL)
     toc(tstart)
 
     clear tstart K
@@ -155,17 +136,17 @@ for testcase = TESTS
 
     if saveplots
         %  --create the folder for test results
-        %folder = sprintf('./Results/testcase%g/',testcase);
-        %if (exist(results_root,'dir') == 0)
+        folder = sprintf('./results/testcase%g/',testcase);
+        if (exist(folder,'dir') == 0)
             %  --subfolder does not exist so create it
-           % mkdir(folder);
-        %end
+            mkdir(folder);
+        end
 
         %  --save simulation results to the specific testcase folder
-        save(fullfile(results_root,sprintf('simdata_%02d.mat', k)))
+        save(strcat(folder,'simdata.mat'))
     else
         %  --just save a local copy of the simulation results
-        save(sprintf('simdata_%02d.mat', k))
+        save simdata.mat
     end
 
 
@@ -174,13 +155,13 @@ for testcase = TESTS
 end
 
 %%  --remove the temporary path assignments
-%rmpath ../clothoid_toolbox
-
-if ~exist(fullfile(results_root,sprintf('simdata_%02d.mat', k)),'file')
+rmpath clothoid_toolbox
+rmpath waypoint_data
+if ~exist(fullfile(results_root,'simdata.mat'),'file')
     simdata = [];
     if ~exist(results_root,'dir')
         mkdir(results_root);
     end
-    save(fullfile(results_root,sprintf('simdata_%02d.mat', k)),'simdata')
+    save(fullfile(results_root,'simdata.mat'),'simdata')
 end
 end
