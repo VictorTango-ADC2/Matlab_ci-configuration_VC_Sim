@@ -1,4 +1,5 @@
 classdef validate_sim_results<matlab.unittest.TestCase
+    
     properties
         % Default course name (will be overridden per test)
         courseName = '';
