@@ -59,18 +59,11 @@ jobs:
       - name: Run Validation Test
         uses: matlab-actions/run-command@v1
         with:
-         command: |
-           #vcdir = fullfile(pwd, 'code', 'tests');
-           addpath(genpath(fullfile(pwd, 'code/tests')));    #folder with your TestSimValidation.m
-           cd(fullfile(pwd, 'code/tests'));  
-           matrixCase = ${{ matrix.case }};    # pass the YAML matrix number
-           import matlab.unittest.TestRunner
-           import matlab.unittest.TestSuite
-           import matlab.unittest.Verbosity
-           suite = TestSuite.fromClass(?TestSimValidation);
-           runner = TestRunner.withTextOutput('OutputDetail', Verbosity.Detailed);
-           runner.run(suite, 'matrixCase', matrixCase);
-
+          command: |
+            addpath(genpath(fullfile(pwd,'code/tests')));
+            cd(fullfile(pwd,'code/tests'));
+            runtests('validate_sim_results');
+            
       - name: Debug Results
         run: |
                pwd
