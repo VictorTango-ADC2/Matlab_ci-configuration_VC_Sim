@@ -24,8 +24,8 @@ plottype = [2,3,5,6,7];
 for p = 1:length(plottype)
     switch plottype(p)
         case 1  % plot the configuration signals
-            figure(plottype(p))
-            clf
+            fig = figure(plottype(p))
+            clf(fig)
             sigs = {'mode_select','action_select','AV_start_request', ...
                 'AV_mode_active','VC_state','car_is_stopped', ...
                 'speed_mode','steer_mode','path_mode','wpt_status_change', ...
@@ -58,12 +58,12 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(folder,'timing.fig'),plotsize);
+                savefig(fig, fullfile(folder,'timing.fig'));
             end
 
         case 2  % plot the motion signals
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'vref','vdes','vcar', ...
                 'alat','along','pitch','jlat','jlong'};
             yl = {'m/s','m/s','m/s','m/s^2','m/s^2','rad','m/s^3','m/s^3'};
@@ -98,13 +98,13 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'motion.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'motion.fig'));
             end
 
 
         case 3  % plot the control signals
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'torque_cmd','torque_fbk','brake_cmd','brake_fbk', ...
                 'steer_cmd','steer_fbk'};
             yl = {'Nm','Nm','Nm','Nm','deg','deg'};
@@ -136,12 +136,12 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'control.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'control.fig'));
             end
 
         case 4  % plot the force signals
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'Fgrade','Fsum','Fnet','Fdamp'};
             yl = {'N','N','N','N'};
             NS = length(sigs);
@@ -158,13 +158,13 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'forces.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'forces.fig'));
             end
 
 
         case 5  % plot the pose signals
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'north_target','northcg','northr', ...
                 'east_target','eastcg','eastr', ...
                 'xterr','psi'};
@@ -211,13 +211,13 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'pose.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'pose.fig'));
             end
 
 
         case 6  % plot the birdseye signals
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'northr','eastr'};
             yl = {'m','m'};
             h(1) = plot(EWP,NWP,'.-','markersize',10,'linewidth',lw,'color',gray);
@@ -232,13 +232,13 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'birdseye.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'birdseye.fig'));
             end
 
         case 7  % torque, brake, velocity
 
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             sigs = {'torque_cmd','torque_fbk','brake_cmd','brake_fbk', ...
                 'vref','vdes','vcar'};
             NS = length(sigs);
@@ -269,19 +269,19 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'speed_control.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'speed_control.fig'));
             end
 
 
         case 8  % birdseye animation
 
-            %  --initialize the figure
+            %  --initialize the fig=figure
             clear draw_car
             ms = 20;
             lw = 1;
 
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
 
             %  --prepare for saving a movie
             if savemovie
@@ -401,8 +401,8 @@ for p = 1:length(plottype)
 
 
         case 9  % plot the waypoint index signal
-            figure(plottype(p))
-            clf
+            fig=figure(plottype(p))
+            clf(fig)
             subplotfill(2,1,1);
             h = stairs(sim.t,sim.wpt_index,'color','b');
             set(h,'linewidth',lw)
@@ -431,16 +431,16 @@ for p = 1:length(plottype)
 
 
             if saveplots
-                savefig(fullfile(results_root,'wpt_index.fig'),plotsize);
+                savefig(fig, fullfile(results_root,'wpt_index.fig'));
             end
 
 
     end
 
-    figs = findall(0,'Type','figure');
+    figs = findall(0,'Type','fig=figure');
 
     for i = 1:length(figs)
-        fname = fullfile(results_root, sprintf('plot_%02d.fig', i));
+        fname = fig, fullfile(results_root, sprintf('plot_%02d.fig', i));
         savefig(figs(i), fname, plotsize);
     end
 
