@@ -58,7 +58,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(strcat(folder,'timing.fig'),plotsize);
+=======
+                savefig(strcat(folder,'timing.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
         case 2  % plot the motion signals
@@ -98,7 +102,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'motion.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'motion.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
 
@@ -136,7 +144,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'control.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'control.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
         case 4  % plot the force signals
@@ -158,7 +170,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'forces.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'forces.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
 
@@ -211,7 +227,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'pose.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'pose.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
 
@@ -232,7 +252,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'birdseye.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'birdseye.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
         case 7  % torque, brake, velocity
@@ -269,7 +293,11 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'speed_control.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'speed_control.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
 
@@ -431,7 +459,11 @@ for p = 1:length(plottype)
 
 
             if saveplots
+<<<<<<< HEAD
                 savefig(fullfile(results_root,'wpt_index.fig'),plotsize);
+=======
+                savefig(fullfile(results_root,'wpt_index.png'),plotsize);
+>>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
 
