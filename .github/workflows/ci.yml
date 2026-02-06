@@ -45,7 +45,7 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-            vcdir = fullfile(pwd, 'code', 'VC v1.2');
+            vcdir = fullfile(pwd, 'code', 'VC_v1p1');
             addpath(genpath(vcdir));
             cd(vcdir);
 
