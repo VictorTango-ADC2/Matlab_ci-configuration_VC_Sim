@@ -12,7 +12,7 @@ addpath ../clothoid_toolbox -begin
 
 wptfolder = '../clothoid_toolbox/waypoint_data/';
 
-savemovie = false;
+savemovie = true;
 
 saveplots = true;
 
@@ -22,7 +22,7 @@ if isempty(workspace)
 end
 
 repoRoot = fileparts(fileparts(pwd));
-run_id = sprintf('testcase_%02d', k);
+run_id = sprintf('case_%d', k);
 results_root = fullfile(repoRoot, 'Results',run_id);
 if ~exist(results_root, 'dir')
     mkdir(results_root);
