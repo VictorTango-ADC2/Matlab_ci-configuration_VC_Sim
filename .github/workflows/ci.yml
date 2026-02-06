@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: VC_results_case_${{ matrix.case }}
-          path: Results/VC_results_case_${{ matrix.case }}/
+          path: Results/ #VC_results_case_${{ matrix.case }}/
   # Runs a set of commands using the runners shell
       #- name: Run all tests
         #uses: matlab-actions/run-tests@v2
