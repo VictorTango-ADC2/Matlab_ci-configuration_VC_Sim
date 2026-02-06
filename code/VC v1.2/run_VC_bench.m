@@ -12,7 +12,7 @@ addpath ../clothoid_toolbox -begin
 
 wptfolder = '../clothoid_toolbox/waypoint_data/';
 
-savemovie = true;
+savemovie = false;
 
 saveplots = true;
 
