@@ -59,9 +59,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(strcat(folder,'timing.fig'),plotsize);
+                savefig(strcat(folder,'timing.fig'));
 =======
-                savefig(strcat(folder,'timing.png'),plotsize);
+                savefig(strcat(folder,'timing.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -103,9 +103,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'motion.fig'),plotsize);
+                savefig(fullfile(results_root,'motion.fig'));
 =======
-                savefig(fullfile(results_root,'motion.png'),plotsize);
+                savefig(fullfile(results_root,'motion.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -145,9 +145,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'control.fig'),plotsize);
+                savefig(fullfile(results_root,'control.fig'));
 =======
-                savefig(fullfile(results_root,'control.png'),plotsize);
+                savefig(fullfile(results_root,'control.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -171,9 +171,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'forces.fig'),plotsize);
+                savefig(fullfile(results_root,'forces.fig'));
 =======
-                savefig(fullfile(results_root,'forces.png'),plotsize);
+                savefig(fullfile(results_root,'forces.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -228,9 +228,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'pose.fig'),plotsize);
+                savefig(fullfile(results_root,'pose.fig'));
 =======
-                savefig(fullfile(results_root,'pose.png'),plotsize);
+                savefig(fullfile(results_root,'pose.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -253,9 +253,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'birdseye.fig'),plotsize);
+                savefig(fullfile(results_root,'birdseye.fig'));
 =======
-                savefig(fullfile(results_root,'birdseye.png'),plotsize);
+                savefig(fullfile(results_root,'birdseye.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -294,9 +294,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'speed_control.fig'),plotsize);
+                savefig(fullfile(results_root,'speed_control.fig'));
 =======
-                savefig(fullfile(results_root,'speed_control.png'),plotsize);
+                savefig(fullfile(results_root,'speed_control.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
@@ -460,9 +460,9 @@ for p = 1:length(plottype)
 
             if saveplots
 <<<<<<< HEAD
-                savefig(fullfile(results_root,'wpt_index.fig'),plotsize);
+                savefig(fullfile(results_root,'wpt_index.fig'));
 =======
-                savefig(fullfile(results_root,'wpt_index.png'),plotsize);
+                savefig(fullfile(results_root,'wpt_index.png'));
 >>>>>>> 4ccadb0134a437420a35c83da8344a223a626def
             end
 
