@@ -62,6 +62,7 @@ jobs:
          command: |
            #vcdir = fullfile(pwd, 'code', 'tests');
            addpath(genpath(fullfile(pwd, 'code/tests')));    % folder with your TestSimValidation.m
+           cd(fullfile(pwd, 'code/tests'));  
            matrixCase = ${{ matrix.case }};    % pass the YAML matrix number
            import matlab.unittest.TestRunner
            import matlab.unittest.TestSuite
