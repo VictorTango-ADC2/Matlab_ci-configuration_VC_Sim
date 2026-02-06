@@ -444,6 +444,6 @@ for p = 1:length(plottype)
         savefig(figs(i), fname);
     end
 
-    close all
+    %close all
 end
 
