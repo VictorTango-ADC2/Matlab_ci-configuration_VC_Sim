@@ -3,6 +3,7 @@ classdef TestSimValidation < matlab.unittest.TestCase
         % Default course name (will be overridden per test)
         courseName = '';
     end
+
     
     properties(Constant)
         % Map matrix case numbers to course names
