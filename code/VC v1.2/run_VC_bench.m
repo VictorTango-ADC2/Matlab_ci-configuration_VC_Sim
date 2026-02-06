@@ -21,14 +21,23 @@ if isempty(workspace)
     workspace = pwd; % local fallback
 end
 
+repoRoot = fileparts(fileparts(pwd));
 run_id = sprintf('testcase_%02d', k);
-results_root = fullfile(pwd, 'Results', run_id);
-
-if saveplots
-    if exist(results_root, 'dir') == 0
-        mkdir(results_root);
-    end
+results_root = fullfile(repoRoot, 'Results',run_id);
+if ~exist(results_root, 'dir')
+    mkdir(results_root);
 end
+
+
+
+%
+%results_root = fullfile(pwd, 'Results', run_id);
+
+%if saveplots
+ %   if exist(results_root, 'dir') == 0
+  %      mkdir(results_root);
+   % end
+%end
 
 %if saveplots
     %  --check to see if the results folder exists
