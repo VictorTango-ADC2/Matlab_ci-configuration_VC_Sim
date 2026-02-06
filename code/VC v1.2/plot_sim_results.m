@@ -58,7 +58,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(folder,'timing.fig'));
+                savefig(fullfile(folder,'timing.fig'),plotsize);
             end
 
         case 2  % plot the motion signals
@@ -98,7 +98,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'motion.fig'));
+                savefig(fullfile(results_root,'motion.fig'),plotsize);
             end
 
 
@@ -136,7 +136,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'control.fig'));
+                savefig(fullfile(results_root,'control.fig'),plotsize);
             end
 
         case 4  % plot the force signals
@@ -158,7 +158,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'forces.fig'));
+                savefig(fullfile(results_root,'forces.fig'),plotsize);
             end
 
 
@@ -211,7 +211,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'pose.fig'));
+                savefig(fullfile(results_root,'pose.fig'),plotsize);
             end
 
 
@@ -232,7 +232,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'birdseye.fig'));
+                savefig(fullfile(results_root,'birdseye.fig'),plotsize);
             end
 
         case 7  % torque, brake, velocity
@@ -269,7 +269,7 @@ for p = 1:length(plottype)
             drawnow
 
             if saveplots
-                savefig(fullfile(results_root,'speed_control.fig'));
+                savefig(fullfile(results_root,'speed_control.fig'),plotsize);
             end
 
 
@@ -431,7 +431,7 @@ for p = 1:length(plottype)
 
 
             if saveplots
-                savefig(fullfile(results_root,'wpt_index.fig'));
+                savefig(fullfile(results_root,'wpt_index.fig'),plotsize);
             end
 
 
@@ -441,7 +441,7 @@ for p = 1:length(plottype)
 
     for i = 1:length(figs)
         fname = fullfile(results_root, sprintf('plot_%02d.fig', i));
-        savefig(figs(i), fname);
+        savefig(figs(i), fname, plotsize);
     end
 
     close all
