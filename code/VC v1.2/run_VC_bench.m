@@ -162,10 +162,10 @@ for testcase = TESTS
         %end
 
         %  --save simulation results to the specific testcase folder
-        save(fullfile(results_root,'simdata.mat'))
+        save(fullfile(results_root,sprintf('simdata_%02d.mat', k)))
     else
         %  --just save a local copy of the simulation results
-        save(sprintf('simdata_%02d.mat.mat', k))
+        save(sprintf('simdata_%02d.mat', k))
     end
 
 
@@ -176,11 +176,11 @@ end
 %%  --remove the temporary path assignments
 %rmpath ../clothoid_toolbox
 
-if ~exist(fullfile(results_root,'simdata.mat'),'file')
+if ~exist(fullfile(results_root,sprintf('simdata_%02d.mat', k)),'file')
     simdata = [];
     if ~exist(results_root,'dir')
         mkdir(results_root);
     end
-    save(fullfile(results_root,'simdata.mat'),'simdata')
+    save(fullfile(results_root,sprintf('simdata_%02d.mat', k)),'simdata')
 end
 end
