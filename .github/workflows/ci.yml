@@ -60,8 +60,8 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
          command: |
-           vcdir = fullfile(pwd, 'code', 'tests');
-           addpath(genpath(vcdir));  % folder with your TestSimValidation.m
+           #vcdir = fullfile(pwd, 'code', 'tests');
+           addpath(genpath(fullfile(pwd, 'code/tests')));    % folder with your TestSimValidation.m
            matrixCase = ${{ matrix.case }};    % pass the YAML matrix number
            import matlab.unittest.TestRunner
            import matlab.unittest.TestSuite
