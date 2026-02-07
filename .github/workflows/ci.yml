@@ -58,13 +58,13 @@ jobs:
 
     
       - name: Upload VC results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: vc-results-${{ matrix.case }}
           path: code/VC_v1p1/results/case_${{ matrix.case }}/simdata.mat
 
       - name: Download VC results
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: vc-results-${{ matrix.case }}
           path: code/tests/downloaded_results
