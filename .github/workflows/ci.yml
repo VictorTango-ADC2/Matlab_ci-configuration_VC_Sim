@@ -62,14 +62,10 @@ jobs:
           command: |
             addpath(genpath(fullfile(pwd,'code/tests')));
             cd(fullfile(pwd,'code/tests'));
+            setenv('MATRIX_CASE','${{ matrix.case }}');
             runtests('validate_sim_results');
 
-            try
-                validateSimResults(testCase, ${{ matrix.case }});
-            catch ME
-                disp(getReport(ME, 'extended'));
-                exit(1);
-            end
+         
             
       - name: Debug Results
         run: |
