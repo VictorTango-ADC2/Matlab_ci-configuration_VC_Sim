@@ -34,7 +34,7 @@ classdef validate_sim_results < matlab.unittest.TestCase
                 error('Simulation file %s not found.', simFile);
             end
             S = load(simFile);
-            sim = S;
+            sim = S.sim;
 
             % --- Validate Simulation Results ---
             %test_results = validate_sim_results(sim, testCase.courseName);

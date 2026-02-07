@@ -135,21 +135,28 @@ for testcase = TESTS
     repack_simdata
 
     if saveplots
-        %  --create the folder for test results
-        folder = sprintf('./results/testcase%g/',testcase);
-        if (exist(folder,'dir') == 0)
-            %  --subfolder does not exist so create it
-            mkdir(folder);
-        end
-
-        %  --save simulation results to the specific testcase folder
-        save(strcat(folder,'simdata.mat'))
-    else
+    %     %  --create the folder for test results
+    %     folder = sprintf('./results/testcase%g/',testcase);
+    %     if (exist(folder,'dir') == 0)
+    %         %  --subfolder does not exist so create it
+    %         mkdir(folder);
+    %     end
+    % 
+    %     %  --save simulation results to the specific testcase folder
+    %     save(strcat(folder,'simdata.mat'))
+    % else
         %  --just save a local copy of the simulation results
         save simdata.mat
+        % if ~exist(fullfile(results_root,'simdata.mat'),'file')
+        %     % simdata = [];
+        %     if ~exist(results_root,'dir')
+        %         mkdir(results_root);
+        %     end
+        %     save(fullfile(results_root,'simdata.mat'))
+        % end
     end
 
-
+    
     %%  --plot the simulation response data
     plot_sim_results
 end
@@ -157,11 +164,5 @@ end
 %%  --remove the temporary path assignments
 rmpath clothoid_toolbox
 rmpath waypoint_data
-if ~exist(fullfile(results_root,'simdata.mat'),'file')
-    simdata = [];
-    if ~exist(results_root,'dir')
-        mkdir(results_root);
-    end
-    save(fullfile(results_root,'simdata.mat'),'simdata')
-end
+
 end

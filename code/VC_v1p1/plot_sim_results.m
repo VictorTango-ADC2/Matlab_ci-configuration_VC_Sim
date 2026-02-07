@@ -271,131 +271,131 @@ for p = 1:length(plottype)
             end
 
 
-        case 8  % birdseye animation
-
-            %  --initialize the figure
-            clear draw_car
-            ms = 20;
-            lw = 1;
-
-            figure(plottype(p))
-            clf
-
-            %  --prepare for saving a movie
-            if savemovie
-                img = [];
-                FX = 640;  FY = 480;
-                set(gcf,'position',[21        1096        FX         FY])
-                moviefile = strcat(folder,'birdseye_animate.mp4');
-                vidObj = VideoWriter(moviefile,'MPEG-4');
-                vidObj.Quality = 100;
-                vidObj.FrameRate = 40;
-                open(vidObj);
-            end
-
-            %  --save local variables for the bar chart
-            xterr = sim.xterr;
-            verr = sim.vdes - sim.vcar;
-            alat = sim.alat/100;
-            along = sim.along/100;
-            jlat = sim.jlat/100;
-            jlong = sim.jlong/100;
-            kpdes = sim.kpdes*10;
-            kdes = sim.kdes;
-            data = [xterr(1),verr(1),alat(1),along(1),jlat(1), ...
-                jlong(1),kpdes(1),kdes(1)];
-            hax0 = subplotfill(2,2,3);
-            hbar = barh(data);
-            set(hbar,'facecolor',[0 0.6 0]);
-            xlim(0.4*[-1,1])
-            ylim([0.5,length(data)+0.5])
-            grid on
-            set(hax0,'ytick',[1:length(data)])
-            labstr = {'\epsilon_{cross track} [m]','\epsilon_{velocity} [m/s]','a_{lat}/100 [m/s^2]', ...
-                'a_{long}/100 [m/s^2]','j_{lat}/100 [m/s^3]','j_{long}/100 [m/s^3]', ...
-                '\kappa''_{desired}*10 [rad/m^2]','\kappa_{desired} [rad/m]'};
-            set(hax0,'yticklabel',labstr)
-
-            %  --generate the initial birdseye overview
-            hax1 = subplotfill(2,2,1);
-            plot(NWP,EWP,'b.-','markersize',ms/2,'linewidth',lw)
-            grid on
-            hold on
-            axis equal
-            xlabel('North (m)')
-            ylabel('East (m)')
-            title(coursename)
-
-            %  --generate the initial zoomed birdseye view
-            hax2 = subplotfill(1,2,2);
-            plot(NWP,EWP,'b.-','markersize',ms/2,'linewidth',lw)
-            grid on
-            hold on
-            axis equal
-            xlabel('North (m)')
-            ylabel('East (m)')
-            title('Birdseye Local')
-
-            xl = xlim; dx = xl(2) - xl(1);
-            yl = ylim; dy = yl(2) - yl(1);
-            ratio = dx/dy;
-
-            dx = 7;
-            dy = dx/ratio;
-
-            LA = 5;
-            north = sim.northr;
-            east = sim.eastr;
-            northt = sim.north_target;
-            eastt = sim.east_target;
-            psi = (pi/180)*sim.psi;
-            nla = north(1) + LA * cos(psi(1));
-            ela = east(1) + LA * sin(psi(1));
-            axes(hax1);
-            hdot = plot(north(1),east(1),'r.','markersize',ms);
-
-            axes(hax2);
-            draw_car(north(1),east(1),psi(1),5,lw);
-            hx = plot([nla,northt(1)],[ela,eastt(1)],'g');
-
-            %  --save the initial frame data
-            if savemovie
-                f = getframe(gcf);
-                writeVideo(vidObj,f);
-            end
-
-            %  --loop through time steps (frames)
-            for n = 1:10:length(sim.t)
-                %  --update the data for this frame
-                axes(hax0)
-                data = [xterr(n),verr(n),alat(n),along(n),jlat(n),jlong(n),kpdes(n),kdes(n)];
-                set(hbar,'ydata',data);
-
-                axes(hax1);
-                set(hdot,'xdata',north(n),'ydata',east(n));
-
-                %  --draw the car at the next point
-                axes(hax2);
-                draw_car(north(n),east(n),psi(n),LA,lw);
-                nla = north(n) + LA * cos(psi(n));
-                ela = east(n) + LA * sin(psi(n));
-                set(hx,'xdata',[nla,northt(n)],'ydata',[ela,eastt(n)])
-
-                %  --zoom in to the car
-                xlim(north(n) + dx*[-1,1]);
-                ylim(east(n) + dy*[-1,1]);
-
-                drawnow
-
-                %  --save the frame data
-                if savemovie
-                    f = getframe(gcf);
-                    writeVideo(vidObj,f);
-                end
-            end
-
-            %  --close the final movie
-            if savemovie, close(vidObj); end
+        % case 8  % birdseye animation
+        % 
+        %     %  --initialize the figure
+        %     clear draw_car
+        %     ms = 20;
+        %     lw = 1;
+        % 
+        %     figure(plottype(p))
+        %     clf
+        % 
+        %     %  --prepare for saving a movie
+        %     if savemovie
+        %         img = [];
+        %         FX = 640;  FY = 480;
+        %         set(gcf,'position',[21        1096        FX         FY])
+        %         moviefile = strcat(folder,'birdseye_animate.mp4');
+        %         vidObj = VideoWriter(moviefile,'MPEG-4');
+        %         vidObj.Quality = 100;
+        %         vidObj.FrameRate = 40;
+        %         open(vidObj);
+        %     end
+        % 
+        %     %  --save local variables for the bar chart
+        %     xterr = sim.xterr;
+        %     verr = sim.vdes - sim.vcar;
+        %     alat = sim.alat/100;
+        %     along = sim.along/100;
+        %     jlat = sim.jlat/100;
+        %     jlong = sim.jlong/100;
+        %     kpdes = sim.kpdes*10;
+        %     kdes = sim.kdes;
+        %     data = [xterr(1),verr(1),alat(1),along(1),jlat(1), ...
+        %         jlong(1),kpdes(1),kdes(1)];
+        %     hax0 = subplotfill(2,2,3);
+        %     hbar = barh(data);
+        %     set(hbar,'facecolor',[0 0.6 0]);
+        %     xlim(0.4*[-1,1])
+        %     ylim([0.5,length(data)+0.5])
+        %     grid on
+        %     set(hax0,'ytick',[1:length(data)])
+        %     labstr = {'\epsilon_{cross track} [m]','\epsilon_{velocity} [m/s]','a_{lat}/100 [m/s^2]', ...
+        %         'a_{long}/100 [m/s^2]','j_{lat}/100 [m/s^3]','j_{long}/100 [m/s^3]', ...
+        %         '\kappa''_{desired}*10 [rad/m^2]','\kappa_{desired} [rad/m]'};
+        %     set(hax0,'yticklabel',labstr)
+        % 
+        %     %  --generate the initial birdseye overview
+        %     hax1 = subplotfill(2,2,1);
+        %     plot(NWP,EWP,'b.-','markersize',ms/2,'linewidth',lw)
+        %     grid on
+        %     hold on
+        %     axis equal
+        %     xlabel('North (m)')
+        %     ylabel('East (m)')
+        %     title(coursename)
+        % 
+        %     %  --generate the initial zoomed birdseye view
+        %     hax2 = subplotfill(1,2,2);
+        %     plot(NWP,EWP,'b.-','markersize',ms/2,'linewidth',lw)
+        %     grid on
+        %     hold on
+        %     axis equal
+        %     xlabel('North (m)')
+        %     ylabel('East (m)')
+        %     title('Birdseye Local')
+        % 
+        %     xl = xlim; dx = xl(2) - xl(1);
+        %     yl = ylim; dy = yl(2) - yl(1);
+        %     ratio = dx/dy;
+        % 
+        %     dx = 7;
+        %     dy = dx/ratio;
+        % 
+        %     LA = 5;
+        %     north = sim.northr;
+        %     east = sim.eastr;
+        %     northt = sim.north_target;
+        %     eastt = sim.east_target;
+        %     psi = (pi/180)*sim.psi;
+        %     nla = north(1) + LA * cos(psi(1));
+        %     ela = east(1) + LA * sin(psi(1));
+        %     axes(hax1);
+        %     hdot = plot(north(1),east(1),'r.','markersize',ms);
+        % 
+        %     axes(hax2);
+        %     draw_car(north(1),east(1),psi(1),5,lw);
+        %     hx = plot([nla,northt(1)],[ela,eastt(1)],'g');
+        % 
+        %     %  --save the initial frame data
+        %     if savemovie
+        %         f = getframe(gcf);
+        %         writeVideo(vidObj,f);
+        %     end
+        % 
+        %     %  --loop through time steps (frames)
+        %     for n = 1:10:length(sim.t)
+        %         %  --update the data for this frame
+        %         axes(hax0)
+        %         data = [xterr(n),verr(n),alat(n),along(n),jlat(n),jlong(n),kpdes(n),kdes(n)];
+        %         set(hbar,'ydata',data);
+        % 
+        %         axes(hax1);
+        %         set(hdot,'xdata',north(n),'ydata',east(n));
+        % 
+        %         %  --draw the car at the next point
+        %         axes(hax2);
+        %         draw_car(north(n),east(n),psi(n),LA,lw);
+        %         nla = north(n) + LA * cos(psi(n));
+        %         ela = east(n) + LA * sin(psi(n));
+        %         set(hx,'xdata',[nla,northt(n)],'ydata',[ela,eastt(n)])
+        % 
+        %         %  --zoom in to the car
+        %         xlim(north(n) + dx*[-1,1]);
+        %         ylim(east(n) + dy*[-1,1]);
+        % 
+        %         drawnow
+        % 
+        %         %  --save the frame data
+        %         if savemovie
+        %             f = getframe(gcf);
+        %             writeVideo(vidObj,f);
+        %         end
+        %     end
+        % 
+        %     %  --close the final movie
+        %     if savemovie, close(vidObj); end
 
 
         case 9  % plot the waypoint index signal
