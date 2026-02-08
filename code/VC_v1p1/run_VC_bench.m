@@ -151,7 +151,7 @@ for testcase = TESTS
         if ~exist(resultsFolder,'dir')
             mkdir(resultsFolder);
         end
-        save(fullfile(resultsFolder,'simdata.mat')); % <-- must save here
+        save(fullfile(resultsFolder,'simdata.mat'),'sim'); % <-- must save here
         %  --just save a local copy of the simulation results
         %
         % if ~exist(fullfile(results_root,'simdata.mat'),'file')
