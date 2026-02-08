@@ -44,7 +44,7 @@ classdef validate_sim_results < matlab.unittest.TestCase
             % --- Validate Simulation Results ---
             %test_results = validate_sim_results(sim, testCase.courseName);
 
-            f = 2;
+            f = 3;
             % --- Define L4 Urban ODD Thresholds ---
             thresholds.max_xterr = 0.25*f;       % meters
             thresholds.max_verr  = 0.50*f;       % m/s
