@@ -56,14 +56,12 @@ jobs:
                 exit(1);
             end
 
-      - name: Make Results folder
-        run: mkdir -p Results/case_${{ matrix.case }}
-        
+           
       - name: Upload VC results
         uses: actions/upload-artifact@v4
         with:
           name: vc-results-${{ matrix.case }}
-          path: Results/case_${{ matrix.case }}/simdata.mat
+          path: Results/case_${{ matrix.case }}
 
       - name: Download VC results
         uses: actions/download-artifact@v4
