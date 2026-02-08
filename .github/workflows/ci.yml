@@ -77,9 +77,9 @@ jobs:
             addpath(genpath(fullfile(pwd,'code/tests')));
             cd(fullfile(pwd,'code/tests'));
             setenv('MATRIX_CASE','${{ matrix.case }}');
-            runtests('validate_sim_results');
+            testResults = runtests('validate_sim_results');
 
-            if any([results.Failed])
+            if any([testResults.Failed])
               disp('❌ Validation tests failed. Exiting with error.');
               exit(1);
             end
