@@ -79,6 +79,13 @@ jobs:
             setenv('MATRIX_CASE','${{ matrix.case }}');
             runtests('validate_sim_results');
 
+            if any([results.Failed])
+              disp('❌ Validation tests failed. Exiting with error.');
+              exit(1);
+            end
+
+            disp('✅ Validation tests passed.');
+
          
             
       - name: Debug Results
