@@ -25,7 +25,11 @@ classdef validate_sim_results < matlab.unittest.TestCase
     methods(Test)
         function validateSimResults(testCase)
             matrixCase = str2double(getenv('MATRIX_CASE'));
-            dataPath = fullfile(pwd, 'downloaded_results', 'simdata.mat');
+            
+            dataPath = fullfile(pwd,'downloaded_results','simdata.mat');  % flat
+            if ~exist(dataPath,'file')
+                error('simdata.mat not found at %s', dataPath);
+            end
             % --- Select course name for this test ---
             testCase.courseName = validate_sim_results.courseList{matrixCase};
 
