@@ -115,7 +115,7 @@ classdef validate_sim_results < matlab.unittest.TestCase
             end
 
             % --- 4. Display Report ---
-            fprintf('\n--- VALIDATION REPORT: %s ---\n', testCase.coursename);
+            fprintf('\n--- VALIDATION REPORT: %s ---\n', testCase.courseName);
             fprintf('%-25s | %-10s | %-10s | %-8s\n', 'Metric', 'Value', 'Limit', 'Status');
             fprintf('%s\n', repmat('-', 1, 65));
 
