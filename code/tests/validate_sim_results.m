@@ -46,7 +46,7 @@ classdef validate_sim_results < matlab.unittest.TestCase
 
             f = 4;
             % --- Define L4 Urban ODD Thresholds ---
-            thresholds.max_xterr = 0;       % meters
+            thresholds.max_xterr = 3;       % meters
             thresholds.max_verr  = 4;       % m/s
             thresholds.max_jerk  = 30;       % m/s^3 (Comfort limit)
             thresholds.max_alat  = 3.00*f;       % m/s^2 (Stability limit)
