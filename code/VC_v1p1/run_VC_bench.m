@@ -145,8 +145,15 @@ for testcase = TESTS
     %     %  --save simulation results to the specific testcase folder
     %     save(strcat(folder,'simdata.mat'))
     % else
+    %  --save simulation results to the specific testcase folder
+        caseNum = getenv('MATRIX_CASE');  % GitHub Actions env variable
+        resultsFolder = fullfile(pwd,'..','..','Results',sprintf('case_%s',caseNum));
+        if ~exist(resultsFolder,'dir')
+            mkdir(resultsFolder);
+        end
+        save(fullfile(resultsFolder,'simdata.mat')); % <-- must save here
         %  --just save a local copy of the simulation results
-        save simdata.mat
+        %
         % if ~exist(fullfile(results_root,'simdata.mat'),'file')
         %     % simdata = [];
         %     if ~exist(results_root,'dir')
