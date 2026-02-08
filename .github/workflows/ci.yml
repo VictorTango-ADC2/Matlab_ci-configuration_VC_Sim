@@ -56,7 +56,9 @@ jobs:
                 exit(1);
             end
 
-    
+      - name: Make Results folder
+        run: mkdir -p Results/case_${{ matrix.case }}
+        
       - name: Upload VC results
         uses: actions/upload-artifact@v4
         with:
