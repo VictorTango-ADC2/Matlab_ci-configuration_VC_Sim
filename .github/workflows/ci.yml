@@ -4,11 +4,9 @@ name: MATLAB Build
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow pull request events but only for the main branch
+ 
   pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: [ '**' ]
   workflow_dispatch:
 
 jobs:
