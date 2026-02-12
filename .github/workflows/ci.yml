@@ -123,6 +123,32 @@ jobs:
     runs-on: ubuntu-latest
     needs: merge-results
     steps:
+     - name: Set Artifact URL
+       run: echo "ARTIFACT_URL=https://github.com/${GITHUB_REPOSITORY}/suites/${GITHUB_RUN_ID}/artifacts" >> $GITHUB_ENV
+
+     - name: Discord Notification
+      if: always()
+      run: |
+        STATUS="${{ job.status }}"
+        COLOR=3066993
+        if [ "$STATUS" != "success" ]; then
+          COLOR=15158332
+        fi
+
+        curl -H "Content-Type: application/json" \
+             -X POST \
+             -d "{
+               \"embeds\": [{
+                 \"title\": \"GitHub Actions Run\",
+                 \"description\": \"Status: $STATUS\nRepo: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nRun URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n[Download Artifacts](${{ env.ARTIFACT_URL }})\",
+                 \"color\": $COLOR
+               }]
+             }" \
+             ${{ secrets.DISCORD_WEBHOOK }}
+     
+     
+     
+     
      - name: Discord Notification
        if: always()
        run: |
