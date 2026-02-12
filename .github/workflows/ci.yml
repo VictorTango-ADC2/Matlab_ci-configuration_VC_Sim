@@ -108,7 +108,7 @@ jobs:
 
       - name: Merge into single Results folder
         run: |
-          mkdir -p Results
+          mkdir -p Results2
           mv all_results/* Results2/
 
       - name: Upload combined results
