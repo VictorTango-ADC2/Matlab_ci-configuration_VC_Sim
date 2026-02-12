@@ -101,21 +101,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-     # - name: Download all case artifacts
-     #   uses: actions/download-artifact@v4
-     #   with:
-     #     path: all_results
+      - name: Download all case artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all_results
 
       - name: Merge into single Results folder
         run: |
           mkdir -p Results
-          mv all_results/* Results/
+          mv all_results/* Results2/
 
       - name: Upload combined results
         uses: actions/upload-artifact@v4
         with:
           name: VC_results_all_cases
-          path: Results
+          path: Results2
 
   Discord-Notification:
     runs-on: ubuntu-latest
