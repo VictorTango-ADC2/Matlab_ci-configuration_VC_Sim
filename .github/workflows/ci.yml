@@ -118,6 +118,20 @@ jobs:
         with:
           name: VC_results_all_cases
           path: Results
+
+  Discord-Notification:
+    runs-on: ubuntu-latest
+    needs: merge-results
+    steps:
+     - name: Discord Notification
+       if: always()
+       run: |
+         STATUS="${{ job.status }}"
+         curl -H "Content-Type: application/json" \
+              -X POST \
+              -d "{\"content\": \"GitHub Actions run finished: $STATUS\nRepo: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nRun URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+              ${{ secrets.DISCORD_WEBHOOK }}
+  
   # Runs a set of commands using the runners shell
       #- name: Run all tests
         #uses: matlab-actions/run-tests@v2
