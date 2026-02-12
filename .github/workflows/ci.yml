@@ -118,6 +118,33 @@ jobs:
         with:
           name: VC_results_all_cases
           path: Results
+
+  email:
+    runs-on: ubuntu-latest
+    needs: merge-results
+    steps:
+    - name: Send email notification
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.office365.com
+        server_port: 587
+        secure: false
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: GitHub Actions ${{ job.status }} - ${{ github.repository }}
+        body: |
+          Workflow status: ${{ job.status }}
+
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+
+        View run:
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        to: ${{ secrets.EMAIL_TO }}
+        from: GitHub CI
+  
   # Runs a set of commands using the runners shell
       #- name: Run all tests
         #uses: matlab-actions/run-tests@v2
